@@ -1,8 +1,27 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Prerequisites
+
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm run start-db`
+
+Starts a Docker container with PostgreSQL on it listening at port 55432 with the credentials - dev:pgadmin.
+
+### `npm run stop-db`
+
+Removes the PostgreSQL Docker container permanently.
+
+### `npm run start-queue`
+
+This is necessary to start a Docker container with ActiveMQ on your system.
+The JMX broker listens on port 61616 and the Web Console on port 8161. Credentials are demo:activemq.
+
+### `npm run stop-queue`
+
+Removes the ActiveMQ Docker container permanently.
 
 ### `npm start`
 
