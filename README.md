@@ -17,7 +17,7 @@ Removes the PostgreSQL Docker container permanently.
 ### `npm run start-queue`
 
 This is necessary to start a Docker container with ActiveMQ on your system.
-The JMX broker listens on port 61616 and the Web Console on port 8161. Credentials are demo:activemq.
+The JMX broker listens on port 61616 (JMS), 11883 (MQTT), and the Web Console on port 8161. Credentials are demo:activemq.
 
 ### `npm run stop-queue`
 
