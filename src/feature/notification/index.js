@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { dismissNotification } from './actions'
 
 const NotificationView = ({ userName, messages, dismiss }) => {
-  var list = messages.map((message) => {
+  var list = messages.map((message, i) => {
     var displayStyle = [
       'alert',
       'alert-' + message.level,
@@ -14,7 +14,7 @@ const NotificationView = ({ userName, messages, dismiss }) => {
       ? (<i className='fa fa-times' onClick={(e) => {
         dismiss(message.id)
       }}>&nbsp;</i>) : <span />
-    return <li>
+    return <li key={i.toString()}>
       <div className={displayStyle}>
         <b>{message.header ? message.header + ': ' : ''}</b>
         <span>{message.body}&nbsp;</span>

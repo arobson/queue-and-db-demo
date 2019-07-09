@@ -5,18 +5,10 @@ function createDependent (employeeId, firstName, lastName, dateOfBirth) {
         headers: {
             'content-type': 'application/json'
         },
-        body: {
+        body: JSON.stringify({
             firstName, lastName, dateOfBirth
-        }
-    }).then(
-        resp => {
-            if (resp.status === 200) {
-                return resp.json() || [];
-            } else {
-                return [];
-            }
-        }
-    )
+        })
+    })
 }
 
 function getDependents (employeeId) {

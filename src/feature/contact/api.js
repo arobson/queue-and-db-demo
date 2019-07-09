@@ -5,18 +5,10 @@ function changeContact (employeeId, type, contact) {
         headers: {
             'content-type': 'application/json'
         },
-        body: {
+        body: JSON.stringify({
             type, contact
-        }
-    }).then(
-        resp => {
-            if (resp.status === 200) {
-                return resp.json() || [];
-            } else {
-                return [];
-            }
-        }
-    )
+        })
+    })
 }
 
 function getContact (employeeId) {
@@ -28,9 +20,12 @@ function getContact (employeeId) {
     }).then(
         resp => {
             if (resp.status === 200) {
-                return resp.json() || [];
+                return resp.json()
+                    .then(x => {
+                        return x && x.length && x.length >= 1 ? x[0] : {};
+                    });
             } else {
-                return [];
+                return {};
             }
         }
     )

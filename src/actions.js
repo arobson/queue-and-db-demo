@@ -35,6 +35,6 @@ export function onAPIError (dispatch) {
 	dispatch( notify( { header: 'Sorry', body: 'A problem occurred processing your request', level: 'danger' } ) );
 }
 
-export function onConnectionFailure (dispatch) {
-	dispatch( notify( { header: 'Oops', body: 'Could not connect to server :(', level: 'danger' } ) );
+export function onConnectionFailure (dispatch, e) {
+	dispatch( notify( { header: 'Oops', body: e.message, level: 'danger' } ) );
 }

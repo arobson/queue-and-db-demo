@@ -1,32 +1,49 @@
 import dependent from './api';
 import { onConnectionFailure } from '../../actions'
 
-export function createDependent (employeeId, firstName, lastName, dateOfBirth) {
-
-}
-
-export function getDependents (employeeId) {
-    return function get(dispatch) {
-        return dependent.get(employeeId)
+export function create (employeeId, firstName, lastName, dateOfBirth) {
+    return function create(dispatch) {
+        return dependent.create(employeeId, firstName, lastName, dateOfBirth)
             .then(
-                result => dispatch(dependentsLoaded(result)),
+                result => {
+                    dispatch(added())
+                    dispatch(clear())
+                },
                 onConnectionFailure.bind(null, dispatch)
             )
     }
 }
 
-export function dependentFirstNameChanged (firstName) {
+export function get (employeeId) {
+    return function get(dispatch) {
+        return dependent.get(employeeId)
+            .then(
+                result => dispatch(loaded(result)),
+                onConnectionFailure.bind(null, dispatch)
+            )
+    }
+}
+
+export function firstNameChanged (firstName) {
     return { type: 'dependentFirstChanged', firstName }
 }
 
-export function dependentLastNameChanged (lastName) {
+export function lastNameChanged (lastName) {
     return { type: 'dependentLastChanged', lastName }
 }
 
-export function dependentDoBChanged (dateOfBirth) {
+export function dobChanged (dateOfBirth) {
     return { type: 'dependentDoBChanged', dateOfBirth }
 }
 
-function dependentsLoaded (dependents) {
+function loaded (dependents) {
     return { type: 'dependentsLoaded', dependents}
+}
+
+export function added () {
+    return { type: 'dependentAdded' }
+}
+
+export function clear () {
+    return { type: 'dependentClear' }
 }

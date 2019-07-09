@@ -1,0 +1,26 @@
+.edit-row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.item-row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.field {
+    display: inline-block;
+}
+
+.display-field {
+
+}
+
+.field-label {
+    display: block;
+    margin-bottom: .05em;
+}
+
+.edit-row .control {
+    padding-top: 1.35em;
+}

@@ -5,7 +5,10 @@ export function create (employeeId, firstName, lastName, dateOfBirth) {
     return function create(dispatch) {
         return partner.create(employeeId, firstName, lastName, dateOfBirth)
             .then(
-                result => dispatch(added()),
+                result => {
+                    dispatch(added())
+                    dispatch(clear())
+                },
                 onConnectionFailure.bind(null, dispatch)
             )
     }

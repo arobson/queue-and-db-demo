@@ -12,11 +12,19 @@ class Main extends Component {
   render () {
     return (
       <div className='main-container row'>
-        <div className='col-xs-4 col-sm-3 col-md-3 col-lg-2'>
-          <Link to='/address'>address</Link>
-          <Link to='/contact'>contact</Link>
-          <Link to='/dependent'>dependent</Link>
-          <Link to='/partner'>partner</Link>
+        <div className='col-xs-4 col-sm-3 col-md-3 col-lg-2 vertical-nav'>
+          <Link to='/address'>
+            <i className="fa fa-address-book">&nbsp;</i>address
+          </Link>
+          <Link to='/contact'>
+            <i className="fa fa-phone">&nbsp;</i>contact
+          </Link>
+          <Link to='/dependent'>
+            <i className="fa fa-child">&nbsp;</i>dependent
+          </Link>
+          <Link to='/partner'>
+            <i className="fa fa-heart">&nbsp;</i>partner
+          </Link>
         </div>
         <div className='col-xs-8 col-sm-9 col-md-9 col-lg-10 main-component'>
           <Switch>

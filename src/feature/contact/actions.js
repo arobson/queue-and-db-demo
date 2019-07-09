@@ -1,11 +1,23 @@
 import contact from './api';
 import { onConnectionFailure } from '../../actions'
 
-export function changeContact (employeeId, type, contact) {
-
+export function change (employeeId, original, type, contact) {
+    return function change(dispatch) {
+        return contact.change(employeeId,
+            type || original.type, 
+            contact || original.contact)
+            .then(
+                () => {
+                    dispatch(changed({
+                        employeeId, type, contact
+                    }))
+                },
+                onConnectionFailure.bind(null, dispatch)
+            )
+    }
 }
 
-export function getContact (employeeId) {
+export function get (employeeId) {
     return function get(dispatch) {
         return contact.get(employeeId)
             .then(
@@ -15,11 +27,15 @@ export function getContact (employeeId) {
     }
 }
 
-export function contactChanged (contact) {
+export function changed (contact) {
     return { type: 'contactChanged', contact }
 }
 
-export function contactTypeChanged (type) {
+export function contactChanged (field) {
+    return { type: 'contactFieldChanged', contact: field }
+}
+
+export function typeChanged (type) {
     return { type: 'contactTypeChanged', contactType: type }
 }
 

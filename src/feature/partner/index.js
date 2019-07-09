@@ -6,20 +6,25 @@ import Edit from './edit'
 import { connect } from 'react-redux'
 import * as partner from './actions'
 
-const PartnerList = ({ employeeId, firstName, lastName, dateOfBirth, canEdit, partners, firstChanged, lastChanged, dobChanged, get, create, clear }) => {
-    get()
-    let list = (partners || []).map(x => Item(x))
-    let edit = Edit({employeeId, firstName, lastName, dateOfBirth, canEdit, firstChanged, lastChanged, dobChanged, create})
+let initialized = false
+
+const PartnerList = ({ employeeId, firstName, lastName, dateOfBirth, canAdd, partners, firstChanged, lastChanged, dobChanged, get, create, clear }) => {
+    if (!initialized) {
+      initialized = true
+      get(employeeId)
+    }
+    let list = (partners || []).map((x, i) => Item(i, x))
+    let edit = Edit({employeeId, firstName, lastName, dateOfBirth, canAdd, firstChanged, lastChanged, dobChanged, create})
     return (<div className="item-list">
-        {list}
         {edit}
+        <hr />
+        {list}
     </div>)
 }
 
 const mapStateToProps = (state, partners) => {
   return {
-    ...state.partners,
-    partners
+    ...state.partners
   }
 }
 

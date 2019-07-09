@@ -1,6 +1,8 @@
 const assign = Object.assign
 
 const initialState = {
+    employeeId: 100,
+    original: {},
     contactType: '',
     contact: '',
     canChange: false

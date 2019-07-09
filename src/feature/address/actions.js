@@ -1,15 +1,31 @@
 import address from './api';
 import { onConnectionFailure } from '../../actions'
 
-export function changeAddress (employeeId, line1, line2, province, region, country, postal) {
-
+export function change (employeeId, original, line1, line2, province, region, country, postal) {
+    return function change(dispatch) {
+        return address.change(employeeId,
+            line1 || original.line1, 
+            line2 || original.line2, 
+            province || original.province, 
+            region || original.region, 
+            country || original.country, 
+            postal || original.postal)
+            .then(
+                () => {
+                    dispatch(changed({
+                        employeeId, line1, line2, province, region, country, postal
+                    }))
+                },
+                onConnectionFailure.bind(null, dispatch)
+            )
+    }
 }
 
-export function getAddress (employeeId) {
+export function get (employeeId) {
     return function get(dispatch) {
         return address.get(employeeId)
             .then(
-                result => dispatch(addressLoaded(result)),
+                result => dispatch(loaded(result)),
                 onConnectionFailure.bind(null, dispatch)
             )
     }
@@ -39,6 +55,10 @@ export function postalChanged (postal) {
     return { type: 'postalChanged', postal }
 }
 
-function addressLoaded (address) {
-    return { type: 'adressLoaded', address }
+function loaded (loaded) {
+    return { type: 'addressLoaded', address: loaded }
+}
+
+function changed (changed) {
+    return { type: 'addressChanged', address: changed }
 }
