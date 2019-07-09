@@ -1,0 +1,37 @@
+.navbar {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.menu-image {
+  height: 36px;
+  padding-right: .5em;
+  padding-bottom: 0em;
+  margin-bottom: 0em;
+}
+
+.image-link {
+  height: 60px;
+}
+
+.text-link {
+  height: 60px;
+  top: 2em;
+}
+
+.text-link > i {
+  position: relative;
+  top: .15em;
+}
+
+.nav-tabs li a {
+  color: #028
+}
+
+.nav-tabs li.active a:hover {
+  background-color: #99c;
+}
+
+.nav-tabs li.active a {
+  background-color: #028;
+}

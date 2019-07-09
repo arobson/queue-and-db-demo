@@ -1,35 +1,21 @@
-const assign = Object.assign
+import { combineReducers } from 'redux'
+import { routerReducer } from 'react-router-redux'
+import nav from './nav'
 
-const initialState = {
-    address: {},
-    contact: {},
-    partners: [],
-    dependents: []
-}
+import address from './feature/address/reducer'
+import contact from './feature/contact/reducer'
+import notifications from './feature/notification/reducer'
+import dependents from './feature/dependent/reducer'
+import partners from './feature/partner/reducer'
 
-const actions = {
-  addressLoaded: (state, { address }) => {
-    return assign({}, state, { address: address })
-  },
-  contactLoaded: (state, { contact }) => {
-    return assign({}, state, { contact: contact })
-  },
-  partnersLoaded: (state, { partners }) => {
-    return assign({}, state, { partners: partners })
-  },
-  dependentsLoaded: (state, { dependents }) => {
-    return assign({}, state, { dependents: dependents })
-  },
-  messageLoaded: (state, { message }) => {
-    return assign({}, state, { message: message })
-  }
-}
-
-export default function reducer (state = initialState, action) {
-  let fn = actions[ action.type ]
-  if (fn) {
-    return fn(state, action)
-  } else {
-    return state
-  }
+export default function Reducer (history) {
+  return combineReducers({
+    address,
+    contact,
+    dependents,
+    nav: nav(history),
+    notifications,
+    partners,
+    routing: routerReducer
+  })
 }
